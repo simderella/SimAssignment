@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : TopDownCharacterController
 {
+    public Animator anim;
     private Camera _camera;
     private void Awake()
     {
@@ -39,21 +40,18 @@ public class PlayerInputController : TopDownCharacterController
     // Start is called before the first frame update
     public void OnJump(InputValue button)
     {
+        Vector2 jumpInput = button.Get<Vector2>();
         //Debug.Log("OnJump" + value.ToString());
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SetBoolParameter("isJumping", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            SetBoolParameter("isJumping", false);
+            SetTriggerParameter();
         }
 
     }
-    private void SetBoolParameter(string isJumping, bool value)
+    private void SetTriggerParameter()
     {
         // Animator에 파라미터 값을 설정
-        GetComponent<Animator>().SetBool(isJumping, value);
+        anim.SetTrigger("new Trigger");
     }
     void Start()
     {
