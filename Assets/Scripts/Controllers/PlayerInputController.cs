@@ -37,22 +37,18 @@ public class PlayerInputController : TopDownCharacterController
     {
         Debug.Log("OnFire" + value.ToString());
     }
-    // Start is called before the first frame update
     public void OnJump(InputValue button)
     {
-        Vector2 jumpInput = button.Get<Vector2>();
-        //Debug.Log("OnJump" + value.ToString());
+        anim = GetComponent<Animator>();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SetTriggerParameter();
+            // Jump 트리거를 활성화하여 점프 애니메이션을 시작합니다.
+            anim.SetTrigger("New Trigger");
         }
 
     }
-    private void SetTriggerParameter()
-    {
-        // Animator에 파라미터 값을 설정
-        anim.SetTrigger("new Trigger");
-    }
+
     void Start()
     {
         
@@ -61,6 +57,7 @@ public class PlayerInputController : TopDownCharacterController
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 }
