@@ -37,9 +37,23 @@ public class PlayerInputController : TopDownCharacterController
         Debug.Log("OnFire" + value.ToString());
     }
     // Start is called before the first frame update
-    public void OnJump(InputValue value)
+    public void OnJump(InputValue button)
     {
-        Debug.Log("OnJump"+value.ToString());
+        //Debug.Log("OnJump" + value.ToString());
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetBoolParameter("isJumping", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SetBoolParameter("isJumping", false);
+        }
+
+    }
+    private void SetBoolParameter(string isJumping, bool value)
+    {
+        // Animator에 파라미터 값을 설정
+        GetComponent<Animator>().SetBool(isJumping, value);
     }
     void Start()
     {

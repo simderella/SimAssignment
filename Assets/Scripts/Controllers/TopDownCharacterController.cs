@@ -7,7 +7,8 @@ public class TopDownCharacterController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
-
+    public event Action OnJumpEvent;
+    private Animator animator;
     public void CallMoveEvent(Vector2 direction)
     {
         OnMoveEvent?.Invoke(direction);
@@ -16,6 +17,10 @@ public class TopDownCharacterController : MonoBehaviour
     public void CallLookEvent(Vector2 direction)
     {
         OnLookEvent?.Invoke(direction);
+    }
+    public void CallJumpEvent(Action button)
+    {
+        animator = GetComponent<Animator>();
     }
     void Start()
     {
@@ -26,4 +31,5 @@ public class TopDownCharacterController : MonoBehaviour
     {
         
     }
+
 }
