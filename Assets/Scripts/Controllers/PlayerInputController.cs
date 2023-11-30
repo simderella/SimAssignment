@@ -43,12 +43,19 @@ public class PlayerInputController : TopDownCharacterController
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Jump 트리거를 활성화하여 점프 애니메이션을 시작합니다.
-            anim.SetTrigger("New Trigger");
+            SetBoolParameter("IsJump", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SetBoolParameter("IsJump", false);
         }
 
     }
-
+    private void SetBoolParameter(string isJump, bool value)
+    {
+        // Animator에 파라미터 값을 설정
+        anim.SetBool(isJump, value);
+    }
     void Start()
     {
         
